@@ -1,6 +1,7 @@
 import os
 import sys
-
+# 原本没有这句代码
+os.environ["CUDA_VISIBLE_DEVICES"]="-1"
 sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
 
 from diin.graph import Graph

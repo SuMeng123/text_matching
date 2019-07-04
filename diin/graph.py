@@ -1,7 +1,8 @@
 import tensorflow as tf
 from diin import args
 import os
-
+# os.environ["CUDA_VISIBLE_DEVICES"]="-1"
+# 原本代码
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 
@@ -48,11 +49,16 @@ class Graph:
         v_in = tf.layers.conv2d(v, filters=filters, kernel_size=(1, 1))
         for _ in range(3):
             for _ in range(8):
+                # v_out = tf.layers.conv2d(v_in,
+                #                          filters=args.dense_g,
+                #                          kernel_size=(3, 3),
+                #                          padding='SAME',
+                #                          activation='relu')
                 v_out = tf.layers.conv2d(v_in,
                                          filters=args.dense_g,
                                          kernel_size=(3, 3),
                                          padding='SAME',
-                                         activation='relu')
+                                         activation=tf.keras.activations.get('relu'))
                 v_in = tf.concat((v_in, v_out), axis=-1)
             transition = tf.layers.conv2d(v_in,
                                           filters=int(v_in.shape[-1].value * args.dense_theta),

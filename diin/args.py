@@ -5,7 +5,8 @@ d = 100
 max_char_len = 15
 max_word_len = 15
 
-batch_size = 500
+# 原本是500
+batch_size = 50
 
 char_vocab_len = 1692
 
