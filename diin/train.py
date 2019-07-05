@@ -30,11 +30,12 @@ with open('../output/word2vec/w2v.vec', 'rb')as file:
 model = Graph(word_embedding=embedding)
 saver = tf.train.Saver()
 
-config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
-config.gpu_options.per_process_gpu_memory_fraction = 1.0
-
-with tf.Session(config=config)as sess:
+# 原本存在以下4句
+# config = tf.ConfigProto()
+# config.gpu_options.allow_growth = True
+# config.gpu_options.per_process_gpu_memory_fraction = 1.0
+# with tf.Session(config=config)as sess:
+with tf.Session()as sess:
     sess.run(tf.global_variables_initializer())
     sess.run(iterator.initializer, feed_dict={p_c_index_holder: p_c_index,
                                               h_c_index_holder: h_c_index,

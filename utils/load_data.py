@@ -124,6 +124,25 @@ def load_char_word_static_data(file, data_size=None):
 
 
 # 加载char_index与动态词向量的训练数据
+def sumeng_load_char_word_dynamic_data(sentence1,sentence2, data_size=None):
+    # df = pd.read_csv(path)
+    p = [sentence1]
+    h = [sentence2]
+    label = [0]
+
+    # p, h, label = shuffle(p, h, label)
+
+    p_char_index, h_char_index = char_index(p, h)
+
+    p_seg = map(lambda x: list(jieba.cut(re.sub("[！，。？、~@#￥%&*（）.,:：|/`()_;+；…\\\\\\-\\s]", "", x))), p)
+    h_seg = map(lambda x: list(jieba.cut(re.sub("[！，。？、~@#￥%&*（）.,:：|/`()_;+；…\\\\\\-\\s]", "", x))), h)
+
+    p_word_index, h_word_index = word_index(p_seg, h_seg)
+
+    return p_char_index, h_char_index, p_word_index, h_word_index, label
+
+
+# 加载char_index与动态词向量的训练数据
 def load_char_word_dynamic_data(path, data_size=None):
     df = pd.read_csv(path)
     p = df['sentence1'].values[0:data_size]

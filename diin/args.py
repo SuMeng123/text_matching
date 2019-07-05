@@ -8,7 +8,8 @@ max_word_len = 15
 # 原本是500
 batch_size = 50
 
-char_vocab_len = 1692
+# 原本是1692
+char_vocab_len = 7901
 
 learning_rate = 0.001
 

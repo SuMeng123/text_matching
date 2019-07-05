@@ -41,7 +41,7 @@ with tf.Session(config=config)as sess:
                                               p_w_index_holder: p_w_index,
                                               h_w_index_holder: h_w_index,
                                               label_holder: label})
-    saver.restore(sess, "../output/diin/diin_16.ckpt")
+    saver.restore(sess, "../output/diin/diin_3.ckpt")
     steps = int(len(label) / args.batch_size)
     loss_all = []
     acc_all = []
